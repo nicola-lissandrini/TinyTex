@@ -1,0 +1,223 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tinytex}[2017/02/09 TinyTeX]
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{commath}
+\usepackage{import}
+\usepackage{subcaption}
+\usepackage{mathrsfs}
+\usepackage{tabularx}
+\usepackage{bm}
+\usepackage{mathdots}
+\usepackage{mathtools}
+
+\newcommand{\prexp}[1]{^{(#1)}}
+
+\newcommand{\cut}[1]{}
+
+\newcommand{\pr}[1]{\left ( {#1} \right )}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\codeln}[1]{#1
+\begin{lstlisting}
+   #1
+   \end{lstlisting}
+}
+
+\newcommand{\Hs}{\bm{\mathrm{H}}}
+\newcommand{\gv}{~|~}
+
+\newcommand{\st}{\textrm{ s.t. }}
+
+\newcommand{\deriv}[2]{ \frac{\dif #1}{\dif #2}}
+
+\newcommand{\Prob}[1]{\mathrm{P} \bigl [ {#1} \bigr ]}
+\newcommand{\E}[1]{\mathbb{E} \left [ {#1} \right ]}
+\newcommand{\hE}[1]{\hat {\mathbb{E}} \left [ {#1} \right ]}
+\newcommand{\var}[1]{\mathrm{Var} \left [ {#1} \right ]}
+\newcommand{\varnp}{\mathrm{Var~}}
+\newcommand{\cov}[1]{\mathrm{Cov} \left [ {#1} \right ]}
+\newcommand{\Q}[1]{\mathrm{Q} \pr{#1}}
+
+
+\renewcommand{\vec}[1]{{\bm #1}}
+\newcommand{\X}{\vec{X}}
+\newcommand{\Gauss}{\mathcal{N}}
+
+%\newcommand{\norm}[1]{\left \| {#1} \right \| }
+
+\newcommand{\qmatrix}[1]{\begin{bmatrix}#1 \end{bmatrix}}
+\newcommand{\qmx}[1]{\qmatrix{#1}}
+\newcommand{\npmx}[1]{{\begin{matrix}{#1}\end{matrix}}}
+\renewcommand{\mspace}{~~~}
+
+\DeclareMathOperator{\rk}{rank}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\dist}{dist}
+
+\newcommand{\cspan}[1]{\mathrm{span} \left \{#1\right \} }
+\newcommand{\cspancl}[1]{\overline{\mathrm{span}} \left \{#1\right \} }
+
+\newcommand{\nullspace}{\{\vec{0}\}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\Laplace}{\mathcal{L}}
+\newcommand{\Fourier}{\mathcal{F}}
+\newcommand{\Zeta}{\mathcal{Z}}
+\newcommand{\step}{\delta_{-1}}
+\newcommand{\refpar}[1]{\textit{\ref{#1}}}
+\renewcommand{\refeq}[1]{(\ref{#1})}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\jw}{j\omega}
+\newcommand{\ph}{\varphi}
+\newcommand{\um}{\frac{1}{2}}
+\newcommand{\erf}{\mathrm{erf}}
+\newcommand{\erfc}{\mathrm{erfc}}
+\renewcommand{\eval}{\biggr\rvert}
+
+\renewcommand{\implies}{\Rightarrow}
+\newcommand{\sse}{~\Leftrightarrow~}
+
+\newcommand{\inner}[1]{\langle {#1} \rangle}
+
+\newcommand{\argmin}[1]{\underset{#1}{\mathrm{argmin}~}}
+\newcommand{\argmax}[1]{\underset{#1}{\mathrm{argmax}~}}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\tallblk}{\phantom{Ng}}
+
+\newcommand{\smallub}{\underbracket[0.5pt]}
+\newcommand{\smallob}{\overbracket[0.5pt]}
+
+\newcommand{\sys}[1]{\left \{ \begin {aligned} #1 \end{aligned} \right .}
+
+\newcommand{\algn}[1]{\begin{align}#1\end{align}}
+\newcommand{\algnnl}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\eq}[1]{\begin{equation}\begin{split}#1\end{split}\end{equation}}
+\newcommand{\eqnl}[1]{\begin{equation*}\begin{split}#1\end{split}\end{equation*}}
+% shortcut definitions for mathcal,mathbb, vec
+\RequirePackage{shortletters}
+
+% da retro_prop
+\newcommand{\rs}{{(K)}}
+\newcommand{\fsr}{{forma standard di raggiungibilità}}
+\newcommand{\fcc}{forma canonica di controllo}
+\newcommand{\matcomp}[3]{
+  \qmx{
+    0 & 1 & &  & \\
+    & & \ddots & & \\
+    & & & 1 \\
+    #1 & #2 & \dots & #3
+  }
+}
+% usage:
+%   #1: coeff symbol
+%   #2: var symbol
+%   #3: poly degree
+\newcommand{\monicpoly}[3]{{#1}_0 + {#1}_1 {#2} +  \dots 
++ {#1}_{#3-1} {#2}^{#3-1} + {#2}^{#3}
+}
+% usage:
+%   #1: coeff symbol
+%   #2: var symbol
+%   #3: poly degree
+\newcommand{\poly}[3]{{#1}_0 + {#1}_1 {#2} +  \dots 
++ {#1}_{#3} {#2}^{#3}}
+
+% da oss_prop
+
+\newcommand{\no}{^{no}}
+\newcommand{\oss}[3]{\qmx{{#1} \\ {#1} {#2} \\ \vdots \\ {#1} {#2}^{#3}}}
+
+
+
+
+\newcommand{\tht}{\vartheta}
+\newcommand{\tran}{^\top}
+
+\newcommand{\partf}[2]{\frac{\partial #1}{\partial #2}}
+
+
+%% Robotics
+
+
+\newcommand{\fstyle}[1]{#1}
+\newcommand{\uav}{\fstyle{UAV}}
+\newcommand{\eef}{\fstyle{end effector}}
+\renewcommand{\R}{\vecR}
+\renewcommand{\o}{\veco}
+\newcommand{\F}[1]{\fstyle{Frame~{#1}}}
+\newcommand{\vom}{\vec{\omega}}
+\newcommand{\vxi}{\vec{\xi}}
+\newcommand{\tf}[2]{\vec{T}^{#1}_{#2}}
+\newcommand{\rt}[2]{\vec{R}^{#1}_{#2}}
+\newcommand{\tr}[2]{\vec{o}^{#1}_{#2}}
+\newcommand{\zero}{\vec{0}}
+\newcommand{\rf}[1]{$\{#1\}$}
+\newcommand{\groupStyle}{\mathbb}
+\newcommand{\SO}[1]{\groupStyle{SO}(#1)}
+\newcommand{\SE}[1]{\groupStyle{SE}(#1)}
+
+\renewcommand{\skew}[1]{\vecS({#1})}
+\newcommand{\eye}[1][]{\vecI_{#1}}
+\newcommand{\pifr}[1][2]{\textstyle\frac{\pi}{#1}}
+\newcommand{\tfmx}[2]{\qmx{{#1} & {#2} \\ \vec{0} & 1}}
+
+\newcommand{\vdot}[1]{\vec{\dot #1}}
+
+\newcommand{\rotx}{\vecR_x}
+\newcommand{\roty}{\vecR_y}
+\newcommand{\rotz}{\vecR_z}
+
+
+%%% TIKZ
+\long\def\ifnodedefined#1#2#3{%
+	\@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+}
+\newcommand{\tikzeq}[2]{\tikzmark{#1__start}#2\tikzmark{#1__end}}
+\newcommand{\tikzequnderbrace}[2] {
+	\draw[decorate, decoration={brace,mirror,raise=0.5em}] (pic cs:#1__start) -- (pic cs:#1__end);
+	\node [anchor=north, yshift=-0.75em] (#1__node) at ($(pic cs:#1__start)!0.5!(pic cs:#1__end)$) {\small {#2}};
+}
+\newcommand{\tikzequnderbracemore}[2] {
+\draw[decorate, decoration={brace,mirror,raise=0.8em}] (pic cs:#1__start) -- (pic cs:#1__end);
+\node [anchor=north, yshift=-1.15em] (#1__node) at ($(pic cs:#1__start)!0.5!(pic cs:#1__end)$) {\small {#2}};
+}
+\newcommand{\tikzeqoverbrace}[2] {
+	\draw[decorate, decoration={brace,raise=0.9em}] (pic cs:#1__start) -- (pic cs:#1__end);
+	\node [above, anchor=north, yshift=2.3em] (#1__node) at ($(pic cs:#1__start)!0.5!(pic cs:#1__end)$) {\small {#2}};
+}
+\newcommand{\tikzeqoverbracemore}[2] {
+\draw[decorate, decoration={brace,raise=1.2em}] (pic cs:#1__start) -- (pic cs:#1__end);
+\node [above, anchor=north, yshift=2.7em] (#1__node) at ($(pic cs:#1__start)!0.5!(pic cs:#1__end)$) {\small {#2}};
+}
+\newcommand{\tikzeqrightbrace}[2] {
+\draw[decorate, decoration={brace,mirror,raise=0.0em}] (#1__node.south east) -- 
+	(#1__node.north east);
+\node [anchor=west, xshift=0.2em] at (#1__node.east) {\small #2};
+}
+\newcommand{\tikzeqleftbrace}[2] {
+\draw[decorate, decoration={brace,raise=0.0em}] (#1__node.south west) -- 
+(#1__node.north west);
+\node [anchor=east, xshift=0em] at (#1__node.west) {\small #2};
+}
+
+% 1: tikzeq name
+% 2: height
+% 3: new node name
+\newcommand{\emphnode}[4] {
+	\node [anchor=center, yshift=0.2em, fit=(pic cs:#1__start)(pic cs:#1__end),emph, minimum height=#2, draw=rossoPantano] (#3) {};
+}
+\newcommand{\emphedge}[4] {
+	\draw[->] (#1) edge [out=#3, in=#4, emph] (#2);
+}
+\endinput
